@@ -1,0 +1,1 @@
+# Oprava-podle-testovac-ho-sc-n-e
