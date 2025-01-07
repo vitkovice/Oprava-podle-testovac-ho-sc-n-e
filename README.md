@@ -1,1 +1,1 @@
-# Oprava-podle-testovac-ho-sc-n-e
+Open to use and copy
