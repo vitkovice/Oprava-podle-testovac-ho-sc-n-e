@@ -17,10 +17,10 @@
             <fieldset>
                 <legend>Formulář pro zadání údajů</legend>
 
-                <label for="firstname">Jmeno:</label>
+                <label for="firstname">First Name:</label>
                 <input type="text" id="firstname" name="firstname" required autocomplete="given-name"><br>
 
-                <label for="city">Město:</label>
+                <label for="city">City:</label>
                 <input type="text" id="city" name="city" required><br>
 
                 <button type="submit">Odeslat</button>
@@ -34,6 +34,42 @@
         <p>&copy; 2025 MyApp. Všechna práva vyhrazena.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        const form = document.getElementById('myForm');
+        const resultParagraph = document.getElementById('result');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const firstName = form.firstname.value;
+            const city = form.city.value;
+
+            // Funkce pro spočítání samohlásek a souhlásek
+            function countVowelsAndConsonants(str) {
+                const vowels = 'aeiouAEIOU';
+                let vowelCount = 0;
+                let consonantCount = 0;
+
+                for (let i = 0; i < str.length; i++) {
+                    if (vowels.includes(str[i])) {
+                        vowelCount++;
+                    } else if (/[a-zA-Z]/.test(str[i])) {
+                        consonantCount++;
+                    }
+                }
+
+                return { vowelCount, consonantCount };
+            }
+
+            // Spočítáme samohlásky a souhlásky pro jméno a město
+            const firstNameCounts = countVowelsAndConsonants(firstName);
+            const cityCounts = countVowelsAndConsonants(city);
+
+            // Sestavíme výslednou větu
+            const result = `Welcome (${firstName}) from (${city}). There are ${firstNameCounts.vowelCount} vowels in your first name and ${firstNameCounts.consonantCount} consonants in your first name and there are ${cityCounts.vowelCount} vowels in your city and ${cityCounts.consonantCount} consonants in your city.`;
+
+            resultParagraph.textContent = result;
+        });
+    </script>
 </body>
 </html>
